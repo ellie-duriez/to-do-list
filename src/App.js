@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <h1>To do list</h1>
       <Inputfield />
-      <Listitem text="this is my chore"/>
     </div>
   );
 }
