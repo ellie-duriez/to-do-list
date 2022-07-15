@@ -1,11 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
+
 
 function Listitem (props) {
+
+    const [isDone,setIsDone] = useState(false)
+
+    function toggleDone() {
+        setIsDone(current => !current)
+    }
+
     return (
         <div className="flex-container">
-            <p>{props.text}</p>
-            <button>done</button>
-            <button>delete</button>
+            <p style={{textDecoration: isDone?"line-through":""}}>{props.text}</p>
+            <button onClick={toggleDone}>mark as done</button>
+            <button onClick={props.handleRemove}>remove</button>
         </div>
     )
 }

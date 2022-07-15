@@ -6,8 +6,8 @@ function Inputfield () {
 
     const [enteredText,setEnteredText] = useState("")
 
-    function updateEnteredText(event) {
-        const {value} = event.target
+    function updateEnteredText(e) {
+        const {value} = e.target
         setEnteredText(value)
     }
 
@@ -19,8 +19,22 @@ function Inputfield () {
 
 
     const add = function() {
-        setList([...list, { text: enteredText}]);
-        setEnteredText("")
+        if (enteredText.trim() != "") {
+            setList([...list, { text: enteredText}]);
+            setEnteredText("")
+        }
+    }
+
+    function removeListItem(e) {
+        console.log(e)
+        console.log("key: ", e.target.key)
+        const index = e.target.key
+        console.log("index",index)
+        console.log("before splice:", list)
+        list.splice(index)
+        console.log("after splice:", list)
+        setList(list)
+        console.log("after setlist:", list)
     }
 
     return (
@@ -37,8 +51,10 @@ function Inputfield () {
             console.log("pls: ",item)
               return (
                 <Listitem
+                handleRemove={removeListItem}
                   text={item.text}
                   key={index}
+                  id={index}
                 />
               );
             })}
