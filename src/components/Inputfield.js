@@ -25,16 +25,9 @@ function Inputfield () {
         }
     }
 
-    function removeListItem(e) {
-        console.log(e)
-        console.log("key: ", e.target.key)
-        const index = e.target.key
-        console.log("index",index)
-        console.log("before splice:", list)
-        list.splice(index)
-        console.log("after splice:", list)
-        setList(list)
-        console.log("after setlist:", list)
+    function removeListItem(i) {
+        const updatedList = list.filter( (item,index) => index != i )
+        setList(updatedList)
     }
 
     return (
@@ -48,13 +41,12 @@ function Inputfield () {
         <div className="flex-container">
 
         {list.map((item, index) => {
-            console.log("pls: ",item)
+            {/* console.log("pls: ",item,"<-item",index,"<-index") */}
               return (
                 <Listitem
-                handleRemove={removeListItem}
-                  text={item.text}
-                  key={index}
-                  id={index}
+                    handleRemove={removeListItem.bind(this,index)}
+                    text={item.text}
+                    key={index}
                 />
               );
             })}

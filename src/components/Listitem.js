@@ -5,8 +5,13 @@ function Listitem (props) {
 
     const [isDone,setIsDone] = useState(false)
 
-    function toggleDone() {
+    function toggleDone(e) {
         setIsDone(current => !current)
+        if (isDone == true) {
+            e.target.innerText = "mark as done"}
+        else (
+            e.target.innerText = "unmark as done"
+        )
     }
 
     return (
